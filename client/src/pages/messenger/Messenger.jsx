@@ -3,8 +3,27 @@ import Topbar from "../../components/topbar/Topbar";
 import "./messenger.css";
 import Message from "../../components/message/Message";
 import ChatOnline from "../../components/chatOnline/ChatOnline";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import axios from "axios";
+
 
 export default function Messenger() {
+
+    const [conversations, setConversations] = useState([]);
+
+    const {user} =  useContext(AuthContext);
+
+    useEffect(() => {
+        const getConversations = async() => {
+            try{
+            const res = await axios.get("/conversations/"+user._id);
+            console.log(res);
+            } catch(err) {
+             console.log(err);
+            }
+        }
+    })
     return (
         <>
         <Topbar />
