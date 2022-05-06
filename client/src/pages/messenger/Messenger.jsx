@@ -23,7 +23,9 @@ export default function Messenger() {
              console.log(err);
             }
         }
-    })
+        getConversations();
+    }, [user._id])
+
     return (
         <>
         <Topbar />
