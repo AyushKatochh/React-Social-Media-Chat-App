@@ -13,7 +13,7 @@ export default function Messenger() {
     const [conversations, setConversations] = useState([]);
 
     const {user} =  useContext(AuthContext);
-//
+// getting all the conversations according to the specific user 
     useEffect(() => {
         const getConversations = async() => {
             try{
