@@ -33,6 +33,7 @@ export default function Messenger() {
            <div className="chatMenu">
                <div className="chatMenuWrapper">
                   <input placeholder="Search Friends" className="chatMenuInput"/>
+//           Using map to avoid redundancy
                   <Conversation />
                   <Conversation />
                   <Conversation />
