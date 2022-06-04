@@ -61,3 +61,27 @@
     font-weight: 800;
     font-size: xx-small;
 }
+
+.chat__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 62px;
+    border-top: 1px solid lightgray;
+}
+
+.chat__footer > form {
+    flex: 1;
+    display: flex;
+}
+
+.chat__footer > form > body {
+    flex: 1;
+    border-radius: 30px;
+    padding: 10px;
+    border: none;
+}
+
+.chat__footer > form > button {
+    display: none;
+}
