@@ -6,8 +6,25 @@ import SearchIcon from '@mui/icons-material/Search';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import MicIcon from '@mui/icons-material/Mic';
+import {useState} from "react";
+import axios from "./axios";
 
-function Chat() {
+function Chat({messages}) {
+  const [input, setInput]  = useState('');
+
+  const sendMessage = async (e) => {
+    e.preventDefault();
+    
+   await axios.post("/messages/new", {
+    message: input,
+    name: "DEMO APP",
+    timestamp: "Just now",
+    received: true,
+    })
+
+    setInput('')
+  }
+
   return (
     <div className='chat'>
       <div className='chat__header'>
@@ -33,31 +50,23 @@ function Chat() {
       </div>
 
       <div className="chat__body">
-        <p className="chat__message">
-          <span className="chat__name">Ayush</span>
-          This is a message
+        {messages.map((message) => (
+               <p className={`chat__message ${message.received && 'chat__receiver'}`}>
+          <span className="chat__name">{message.name}</span>
+          {message.message}
 
           <span className="chat__timestamp">
-            {new Date().toUTCString()}2
+            {message.timestamp}
           </span>
           </p>
-
-         <p className="chat__message chat__receiver">
-          <span className="chat__name">Ayush</span>
-          This is a message
-
-          <span className="chat__timestamp">
-            {new Date().toUTCString()}2
-          </span>
-          </p>
-
-            </div>
+        ))}
+          </div>
          
          <div className="chat__footer">
              <InsertEmoticonIcon />
              <form>
-               <input placeholder="Type a message" type="text" />
-               <button  type="submit">
+               <input value={input} onChange={e => setInput(e.target.value)} placeholder="Type a message" type="text" />
+               <button onClick={sendMessage} type="submit">
                  Send a message
                </button>
              </form>
