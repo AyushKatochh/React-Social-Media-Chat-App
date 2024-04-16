@@ -3,6 +3,7 @@ import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 import Messenger from "./pages/messenger/Messenger";
+// Adding Context
 import {
   BrowserRouter as Router,
   Switch,
